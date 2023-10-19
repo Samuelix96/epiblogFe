@@ -1,0 +1,114 @@
+html{
+    font-family: "Roboto Light", sans-serif;
+    font-size: 10px;
+}
+#root {
+    background: #DAD299;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #B0DAB9, #DAD299);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+.card{
+    width: 30rem;
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F2F2F2;
+    box-shadow: 0.3rem 0.3rem 1rem #0C0032;
+}
+.card:hover{
+    transform: scale(1.1);
+}
+.top-image{
+    object-fit: cover;
+    width: 100%;
+    height: 15rem;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+}
+.card-image{
+    object-fit: cover;
+    height: 12rem;
+    width: 16rem;
+    z-index: 99;
+    border-radius: 50%;
+    border: 1rem solid #F2F2F2;
+    margin-top: -8rem;
+}
+.card-name{
+    color: #25274D;
+    font-size: 2.5rem;
+    margin: 0rem;
+}
+.card-job{
+    color: #464866;
+    font-size: 1.5rem;
+}
+.card-info{
+    color: #464866;
+    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+}
+.card a{
+    text-decoration: none;
+}
+.card .btn{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #F2F2F2;
+    background-color: #3500D3;
+    margin-top: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    transition: all 0.5s;
+}
+.card .btn:hover{
+    box-shadow: 0.3rem 0.3rem 1.5rem #3500D3;
+    opacity: 0.95;
+    filter: alpha(opacity=95);
+}
+.card-social{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1rem 2rem 2rem 2rem;
+    width: 100%;
+}
+.card-social a{
+    font-size: 3rem;
+    transition: all 0.5s;
+}
+.card-social a:hover{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.fa-facebook-square{
+    color: #3500D3;
+}
+.fa-twitter-square{
+    color: #1DA1F2;
+}
+.fa-instagram{
+    color: #8A3AB9;
+}
+.fa-youtube{
+    color: #C4032B;
+}
+@media screen and (max-width: 700px){
+    section .container{
+        padding: 0;
+    }  
+    .card-wrapper{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .card:hover{
+        transform: none;
+    }
+}
