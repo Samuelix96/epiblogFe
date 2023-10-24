@@ -2,7 +2,9 @@ import { Outlet} from "react-router-dom";
 import Login from "../pages/Login" 
 
 export const isAuth = () => {
-    return JSON.parse(localStorage.getItem("loggedInUser"));
+    return JSON.parse(localStorage.getItem("token"));
+
+    
 }
 
 const ProtectedRoutes = () => {

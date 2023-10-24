@@ -1,0 +1,7 @@
+@media (max-width : 880px)  {
+    .respo-card {
+        display: flex;
+        flex-direction: column;
+
+    }
+}

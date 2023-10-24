@@ -6,11 +6,12 @@ import {Provider} from "react-redux";
 import {combineReducers, configureStore} from "@reduxjs/toolkit"
 import blogsReducerState from "./reducers/blogsReducer"
 import authGitSlice from "./reducers/authUserGit"
-
+import commentsBlogs from "./reducers/commentsBlog"
 
 const reducer = combineReducers({
   blogsStore : blogsReducerState,
-  auth: authGitSlice
+  auth: authGitSlice,
+  comments: commentsBlogs,
 })
 const store= configureStore({
   reducer,

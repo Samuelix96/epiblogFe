@@ -1,40 +1,147 @@
 import React from 'react'
 import "./Footer.css"
+import
+  {
+    MDBFooter,
+    MDBContainer,
+    MDBIcon,
+    MDBInput,
+    MDBCol,
+    MDBRow,
+    MDBBtn
+  } from 'mdb-react-ui-kit';
+import { footerOne, footerTwo, footerThree, footerFour } from '../../data/navLinks';
+import { nanoid } from "nanoid"
 
-const Footer = () => {
 
-
+const Footer = () =>
+{
   return (
-    <div className="container-fluid my-5 justify-content-center p-0 mx-0">
-    
-    <footer>
-        <div className="row mb-0 pt-5 row-2 justify-content-md-around justify-content-center text-center">
-            <div className="col-auto"><figure className="figure"><img className="figure-img img-fluid mb-0 " src="https://i.imgur.com/EdxjWh4.jpg" /><figcaption className="figure-caption ">HIGHDELIVERY SPEED</figcaption> </figure></div>
-            <div className="col-auto"><figure className="figure"><img className="figure-img img-fluid mb-0 " src="https://i.imgur.com/B2QDZvv.jpg" /><figcaption className="figure-caption ">24x7 SUPPORT</figcaption> </figure></div>
-            <div className="col-auto"><figure className="figure"><img className="figure-img img-fluid mb-0 " src="https://i.imgur.com/2CwAMwd.jpg" /><figcaption className="figure-caption ">COMPETITVE PRICES</figcaption> </figure></div>
-            <div className="col-auto"><figure className="figure"><img className="figure-img img-fluid mb-0 " src="https://i.imgur.com/DiayLvX.jpg" /><figcaption className="figure-caption ">STANDARD DESGIN</figcaption> </figure></div>
-            <div className="col-auto"><figure className="figure"><img className="figure-img img-fluid mb-0 " src="https://i.imgur.com/Fw3pD4V.jpg" /><figcaption className="figure-caption ">USE OF TRENDS</figcaption> </figure></div>
-        </div>
-        <div className="row  mb-0 mt-5 mx-4 row-2 justify-content-xl-around justify-content-sm-between">
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 pt-4 order-1"><ul className="list-unstyled"><li className="mt-md-0 mt-4">Our Solution</li><li>Intergrated Platform Security </li><li>Core Features</li><li>Product Features and Services</li><li>Pricing</li></ul></div>
-            <div className="col-xl-3 col-lg-4 col-md-4 col-sm-6 pt-4 order-2"><ul className="list-unstyled"><li className="mt-md-0 mt-4">Your needs</li><li>Intergrated Platform Security </li><li>Core Features</li><li>Product Features</li><li>Pricing</li><li>Product Features</li></ul></div>
-            <div className="col-xl-auto col-lg-6  col-md-6 pt-4 col-sm-6 my-sm-0 order-md-3 order-sm-1 d-flex"><ul className="list-unstyled"><li className="mt-md-0 mt-4">Offer</li><li>Intergrated Security </li><li>Core Features</li><li>Product Features </li><li>Pricing</li><li>Intergrated Security </li></ul></div>
-            <div className="col-xl-auto text-left col-lg-4 col-md-4 col-sm-6 col-12 pt-4 my-sm-0 order-6 my-auto"><div className="input-group-lg input-group mb-3 mt-md-0 mt-4"><input type="text" className="form-control" placeholder="Enter your e-mail address" aria-label="Recipient's username" aria-describedby="button-addon2" /><div className="input-group-append"><button className="btn btn-success" type="button" id="button-addon2"> <b>Join</b></button></div></div><ul className="list-unstyled"><li> <p className="mb-0 pb-0 mt-5">FOLLOW THE WEB ON SOCIAL NETWORKS</p></li><li><a className="fa fa-facebook" /><a className="fa fa-twitter" /><a className="fa fa-instagram" /><a className="fa fa-linkedin" /></li></ul></div>
-        </div>
-        <hr className="line" />
-          <div className="row mx-xl-5 mx-lg-4 mx-3 py-3 justify-content-around ">
-            <div className="col"><h5 className="text-muted mb-4"><b>WHY BBBootstrap IS GOOD CHOICE FOR YOUR BUSINESS </b> </h5><small>Whether your company is made up of five people or 500, internet businesses will always have scarce resources. You will never have enough money, engineers, time or talent. I've never met an internet company executive that complained about having too many talented engineers. Learning how to do more with less is one of the most important skills of an entrepreneur. Every decision will come with the sacrifice of something else, so you'll need to fully understand your financial state at any given moment. Hiring, especially early on, will feel like the biggest decision of your life.This is what I call scrappy validation of assumptions -- a process of continuous learning. </small></div>
-        </div>
-        <hr className="line" />
-        <div className="row justify-content-lg-around  mx-xl-5 mx-lg-4 mx-3 py-3">
-            <div className="col order-1 align-self-center"><p className="mb-0 text-uppercase">we're accountable for seven days a week, 24 hours a day</p><small>Contact Number : 789-421-3600 <br /> Email Address:BBBootstrap@gmail.com </small></div>
-            <div className="col-auto my-sm-0 order-6 my-auto pt-sm-0 pt-3"><ul className="list-inline third-row first"><li className="list-inline-item active-1  "> <span>SMART ORDER</span> </li><li className="list-inline-item"><span>GET STARTED</span></li></ul></div>
-        </div>
-        <hr className="line" />
-        <div className="row text-center py-3"><div className="col"><p className="text-muted"><b>ALL RIGHTS ARE RESERVED BY BBBootstrap Inc</b> </p></div> </div>
-    </footer>
-</div>
-  )
+
+    <MDBFooter className='text-center fs-3 ' color='white' bgColor='dark'>
+      <MDBContainer className='p-4'>
+        <section className='mb-4'>
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='facebook-f' />
+          </MDBBtn>
+
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='twitter' />
+          </MDBBtn>
+
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='google' />
+          </MDBBtn>
+
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='instagram' />
+          </MDBBtn>
+
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='linkedin-in' />
+          </MDBBtn>
+
+          <MDBBtn outline color="light" floating className='m-1' href='#!' role='button'>
+            <MDBIcon fab icon='github' />
+          </MDBBtn>
+        </section>
+
+        <section className=''>
+          <form action=''>
+            <MDBRow className='d-flex justify-content-center'>
+              <MDBCol size="auto">
+                <p className='pt-2'>
+                  <strong>Sign up for our newsletter</strong>
+                </p>
+              </MDBCol>
+
+              <MDBCol md='5' start>
+                <MDBInput contrast type='email' label='Email address' className='mb-4' />
+              </MDBCol>
+
+              <MDBCol size="auto">
+                <MDBBtn outline color='light' type='submit' className='mb-4'>
+                  Subscribe
+                </MDBBtn>
+              </MDBCol>
+            </MDBRow>
+          </form>
+        </section>
+
+        <section className='mb-4'>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum repellat quaerat
+            voluptatibus placeat nam, commodi optio pariatur est quia magnam eum harum corrupti dicta, aliquam
+            sequi voluptate quas.
+          </p>
+        </section>
+
+        <section className=''>
+          <MDBRow>
+            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+              <h5 className='text-uppercase'>Links</h5>
+
+              <ul className='  mb-0'>
+                { footerOne.map((foot) =>
+                { return(
+                  <li key={ nanoid() }>
+                    <a href={ foot.href }>{ foot.name }</a>
+                  </li>
+                )}) }
+              </ul>
+            </MDBCol>
+
+            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+              <h5 className='text-uppercase'>Links</h5>
+ 
+              <ul className='  mb-0'>
+                { footerTwo.map((foot) =>
+                {return(
+                  <li key={ nanoid() }>
+                    <a href={ foot.href }>{ foot.name }</a>
+                  </li>
+                )}) }
+              </ul>
+            </MDBCol>
+
+            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+              <h5 className='text-uppercase'>Links</h5>
+
+              <ul className='  mb-0'>
+                { footerThree.map((foot) =>
+                { return(
+                  <li key={ nanoid() }>
+                    <a href={ foot.href }>{ foot.name }</a>
+                  </li>
+                )}) }
+              </ul>
+            </MDBCol>
+
+            <MDBCol lg='3' md='6' className='mb-4 mb-md-0'>
+              <h5 className='text-uppercase'>Links</h5>
+
+              <ul className='  mb-0'>
+                { footerFour.map((foot) =>
+                { return(
+                  <li  key={ nanoid() }>
+                    <a className='link-underline-opacity-0' href={ foot.href }>{ foot.name }</a>
+                  </li>
+                )})}
+              </ul>
+            </MDBCol>
+          </MDBRow>
+        </section>
+      </MDBContainer>
+
+      <div className='text-center p-3' style={ { backgroundColor: 'rgba(0, 0, 0, 0.2)' } }>
+        © 2020 Copyright:
+        <a className='text-white' href='https://mdbootstrap.com/'>
+          MDBootstrap.com
+        </a>
+      </div>
+    </MDBFooter>
+  );
 }
+
 
 export default Footer

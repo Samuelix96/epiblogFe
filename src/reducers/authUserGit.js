@@ -5,7 +5,7 @@ const authGitSlice = createSlice({
     name: 'auth',
     initialState: {
         user: null, //* Dati dell'utente
-        token: localStorage.getItem('token') || null, //! Token dell'utente
+        token: localStorage.getItem("token") || null, //! Token dell'utente
         isAuthenticated: false, //* Stato di autenticazione
     },
     reducers: {
@@ -23,7 +23,7 @@ const authGitSlice = createSlice({
             state.token = null;
             state.user = null;
             state.isAuthenticated = false;
-            localStorage.removeItem('token');
+            localStorage.removeItem("token");
         },
     },
 });

@@ -1,0 +1,15 @@
+.success-back{
+    background-image: url(http://ppcdn.500px.org/75319705/1991f76c0c6a91ae1d23eb94ac5c7a9f7e79c480/2048.jpg) ;
+			background-position: center center;
+			background-repeat:  no-repeat;
+			background-attachment: fixed;
+			background-size:  cover;
+			background-color: #999;
+}
+
+.success-main {
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

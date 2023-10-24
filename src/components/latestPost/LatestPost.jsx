@@ -1,73 +1,73 @@
-import React, { useEffect, } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  allBlogs,
-  getBlogPostsFromApi,
-  getAllTotalBlogs,
-  searchBlogs,
-  currentPageBlogs,
-  setCurrentPages,
-} from '../../reducers/blogsReducer';
+import { nanoid } from "nanoid"
+import {allBlogs,searchBlogs,currentPageBlogs,setCurrentPages,} from '../../reducers/blogsReducer';
 import ResponsivePagination from 'react-responsive-pagination'
 import 'react-responsive-pagination/themes/classic.css'
 import { Container, Col, Row } from 'react-bootstrap'
-import BlogsCard from '../blogsCard/BlogsCard'
-import { nanoid } from 'nanoid'
-import { useSession } from '../../middlewares/ProtectedRoute';
+import BlogsCard from '../blogsCard/BlogsCard';
+import { Link } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
+import "./main.css"
 
-
-const LatestPost = () => {
+const LatestPost = () =>
+{
   const dispatch = useDispatch()
   const currentPages = useSelector(currentPageBlogs)
+  
+  
+  
   const blogPosts = useSelector(allBlogs)
-  const searchTerm = useSelector(searchBlogs);
+  console.log(blogPosts)
 
-  const handlePageChange = (page) => {
+
+  const handlePageChange = (value) =>
+  {
     //! DEVI SEMPRE DISPACCIARE LO STATE  
-    dispatch(setCurrentPages(page));
-  };
+    dispatch(setCurrentPages(value));
+  }
 
-
-
-  useEffect(() => {
-    if (searchTerm) {
-      // Se è presente un termine di ricerca, effettua una richiesta API per la ricerca
-      dispatch(getAllTotalBlogs(searchTerm));
-    } else {
-      // Altrimenti, carica i dati normali della pagina corrente
-      dispatch(getBlogPostsFromApi(currentPages));
-    }
-  }, [dispatch, currentPages, searchTerm]);
-
-
+  
 
   return (
-    <Container>
+    <Container   className='main-container-post'>
+      <div className='d-flex'>
+        <Button className="btn btn-danger  ">
+          <Link className=' link-offset-2 link-underline link-underline-opacity-0 text-light' to={ '/newblogs' }>
+            AGGIUNGI UN NUOVO POST
+          </Link>
+        </Button>
+      </div>
       <Row>
-        <Col className=" d-flex justify-content-between  gap-3 ">
-          {blogPosts &&
-            blogPosts.blog?.map((blogs) => {
+
+        <Col  className=" respo-card d-flex justify-content-center gap-2 my-5 ">
+          { blogPosts &&
+            blogPosts.blog?.map((blogs) =>
+            {
               return (
                 <BlogsCard
-                  key={nanoid()}
-                  cover={blogs.cover}
-                  title={blogs.title}
-                  content={blogs.content}
-                  category={blogs.category}
-                  value={blogs.readTime.value}
-                  unit={blogs.readTime.unit}
-                  name={blogs.author.name}
-                  avatar={blogs.author.avatar}
+
+                  key={ nanoid() }
+                  id={ blogs._id }
+                  cover={ blogs.cover }
+                  title={ blogs.title }
+                  content={ blogs.content }
+                  category={ blogs.category }
+                  readTime={ blogs.readTime }
+                  author={ blogs.author.firstName }
                 />
               )
-            })}
+            }) }
         </Col>
+       
         <ResponsivePagination
-      current={currentPages}
-      total={blogPosts && blogPosts.totalPages}
-      onPageChange={handlePageChange}
-    />
+          extraClassName="mb-3 d-flex justify-content-center "
+          current={ currentPages }
+          total={ blogPosts && blogPosts.totalPages }
+          onPageChange={ handlePageChange }
+        />
       </Row>
+
     </Container>
   )
 }

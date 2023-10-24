@@ -19,32 +19,42 @@ const Navigation = () => {
 
 
   const searchTerm = useSelector(searchBlogs)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const currentPage = useSelector(currentPageBlogs)
   const [searchValue, setSearchValue] = useState('');
+  const [isSearchReset, setIsSearchReset] = useState(false);
 
+  console.log(searchValue)
+  
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
-
-  }
+    if (e.target.value === '') {
+      setIsSearchReset(true);
+    } else {
+      setIsSearchReset(false);
+    }
+  };
 
   const handleSearchSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    setIsSearchReset(false);
     dispatch(setSearchTerm(searchValue));
-  }
+  };
 
   useEffect(() => {
-    // Se il termine di ricerca è vuoto, carica la pagina corrente
-    if (!searchTerm) {
-      dispatch(getBlogPostsFromApi(currentPage))
+    if (!isSearchReset) {
+      if (!searchTerm) {
+        dispatch(getBlogPostsFromApi(currentPage));
+      } else {
+        dispatch(getAllTotalBlogs(searchTerm));
+      }
     } else {
-      // Altrimenti, esegui una ricerca
-      dispatch(getAllTotalBlogs(searchTerm))
+      dispatch(getBlogPostsFromApi(currentPage));
     }
-  }, [dispatch, currentPage, searchTerm])
+  }, [dispatch, currentPage, searchTerm, isSearchReset]);
 
   return (
-    <Navbar className='nav-bg'>
+    <Navbar className='navbar navbar-expand-lg nav-bg'>
       <Container>
         <Navbar.Brand className='d-flex align-items-center ' href='#home'>
           <img
@@ -72,10 +82,11 @@ const Navigation = () => {
               placeholder='Search'
               className='me-2'
               aria-label='Search'
+              name= "searchValue"
               value={searchValue}
               onChange={handleSearchChange}
             />
-            <Button type="submit" variant='outline-success'>Search</Button>
+            <Button type="submit" className='btn-secondary' >Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

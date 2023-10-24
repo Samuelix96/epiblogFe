@@ -1,32 +1,33 @@
-// WelcomePage.js
+
 import React from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { AuthGit } from '../hooks/userAuthLoginGithub';
-import { logout } from '../reducers/authUserGit';
-import { useNavigate } from 'react-router-dom';
+import "./success.css"
 
 
 function Success() {
     const gitUser = AuthGit()
-    const navigate = useNavigate()
+  
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.user);
     function handleLogout() {
-        dispatch(logout());
-        navigate("/home")
+        window.location.href = "http://localhost:3000/home"
     }
 
     return (
-        <div>
+        <div className='success-back'>
+            <div className='success-main'>
             {user ? (
-                <div>
-                    <h2>Benvenuto : {user.displayName}</h2>
+                <div className='d-flex flex-column bg-primary-subtle p-4 rounded-2 '>
+                    <h2 className='text-black'>Benvenuto : {user.displayName}</h2>
                     
-                    <button onClick={handleLogout}>Logout</button>
+                    <button className='my-3 btn btn-primary' onClick={handleLogout}>Clicca qui per entrare nel sito </button>
                 </div>
             ) : (
                 <p>Devi effettuare l'accesso per visualizzare questa pagina.</p>
             )}
+            </div>
+            
         </div>
     );
 

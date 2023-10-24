@@ -1,32 +1,64 @@
 import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form';
-import { postBlogs, setResetPostData, setPostData } from '../reducers/blogsReducer';
+import { dataBlogsById, patchBlogs, allBlogs} from '../reducers/blogsReducer';
 import { useSelector, useDispatch } from "react-redux"
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { allPostData } from '../reducers/blogsReducer';
-import "./newForm.css"
+import { useNavigate, } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
-const NewForm = () =>
+
+
+
+const UpdateBlogs = () =>
 {
-  const postData = useSelector(allPostData)
+  const {id} = useParams()
+
+  console.log({id})
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [ file, setFile ] = useState(null);
 
   console.log(file)
-
+  const data = useSelector(allBlogs)
+  const [postData, setPostData] = useState(data || {
+    title: "",
+    category: "",
+    content: "",
+    cover: "",
+    readTime: "",
+    author: "",
+  });
+ 
   
-  const dispatch = useDispatch()
-
-
+console.log(data)
+console.log(postData)
 
   const handleInputChange = (e) => {
     e.preventDefault();
-    const { name, value } = e.target;
   
-    dispatch(setPostData({ [name]: value }));
-  };
+    const { name, value } = e.target;
+
+    setPostData({
+      ...postData,
+      [name]: value,
+    })
+  
+  }
+  
+  useEffect(() => {
+    dispatch(dataBlogsById({id}));
+
+    if (data) {
+      setPostData({
+        title: data?.title,
+        category: data.category,
+        content: data.content,
+        readTime: data.readTime,
+        author: data.author,
+      });
+    }
+  }, [ id, ]);
   
 
   const onChangeSetFile = (e) =>
@@ -57,8 +89,9 @@ const NewForm = () =>
     }
   }
 
-  const sendPost = async (e) => {
+  const updatePost = async (e) => {
     e.preventDefault();
+
     if (file) {
       try {
         const uploadCover = await uploadFile(file);
@@ -66,26 +99,34 @@ const NewForm = () =>
           ...postData,
           cover: uploadCover.cover,
         };
-        dispatch(postBlogs(finalBody));
-        dispatch(setResetPostData()); 
+        dispatch(patchBlogs(finalBody));
+        setPostData({
+          title: '',
+          category: '',
+          content: '',
+          readTime: "",
+          cover: "",
+          author: "",
+        });
         setFile(null);
         setTimeout(() => {
           navigate('/home');
         }, 1000); 
+        
       } catch (error) {
-        console.log('errore nell\'invio del post', error);
+        console.log('errore nel invio del post', error);
       }
     }
   };
-  
+
 
 
 
   return (
-    <div className="justify-content-center back-form  vh-100 d-flex align-items-center ">
-      <Form className='bg-info p-5 rounded-4' encType='multipart/form-data' onSubmit={ sendPost } >
+    <div className="justify-content-center  vh-100 d-flex align-items-center ">
+      <Form encType='multipart/form-data' onSubmit={ updatePost } >
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label className='fs-4'>Titolo</Form.Label>
+          <Form.Label>Titolo</Form.Label>
           <Form.Control
             type="text"
             name="title"
@@ -93,7 +134,7 @@ const NewForm = () =>
             placeholder="Titolo"
             autoFocus
           />
-          <Form.Label className='fs-4'>Category</Form.Label>
+          <Form.Label>Category</Form.Label>
           <Form.Control
             type="text"
             name="category"
@@ -101,7 +142,7 @@ const NewForm = () =>
             onChange={ handleInputChange }
             autoFocus
           />
-          <Form.Label className='fs-4'>Inserisci la tua cover</Form.Label>
+          <Form.Label>Inserisci la tua cover</Form.Label>
           <Form.Control
             type="file"
             onChange={ onChangeSetFile }
@@ -109,25 +150,25 @@ const NewForm = () =>
             name="cover"
             autoFocus
           />
-          <Form.Label className='fs-4'>Valore</Form.Label>
+          <Form.Label>Data di Pubblicazione</Form.Label>
           <Form.Control
             type="datetime-local"
             onChange={ handleInputChange }
-            placeholder="ReadTime"
+            placeholder="readTime"
             name="readTime"
             autoFocus
           />
-          
-          <Form.Label className='fs-4'>Name</Form.Label>
+         
+          <Form.Label>Name</Form.Label>
           <Form.Control
             type="text"
             onChange={ handleInputChange }
-            placeholder="ID dell autore"
+            placeholder="Id dell'autore"
             name="author"
             autoFocus
           />
-
-          <Form.Label className='fs-4'>Content</Form.Label>
+          
+          <Form.Label>Content</Form.Label>
           <Form.Control
             as="textarea"
             onChange={ handleInputChange }
@@ -135,10 +176,10 @@ const NewForm = () =>
             name='content'
             placeholder='Content' />
         </Form.Group>
-        <button type="submit" className="btn btn-danger">Send Post</button>
+        <button type="submit" className="btn btn-danger">Update Post</button>
       </Form>
     </div>
   )
 }
 
-export default NewForm
+export default UpdateBlogs
